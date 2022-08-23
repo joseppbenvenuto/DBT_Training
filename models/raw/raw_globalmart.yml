@@ -11,12 +11,12 @@ models:
 
   # Tests for unique and nul null values in raw_orders orderid
   # Test for in raw_orders shipmode for only four unique values
-  - name: raw_orders
-    columns:
-      - name: orderid
-        - tests:
-          - unique
-          - not_null
+  # - name: raw_orders
+    # columns:
+      # - name: orderid
+        # - tests:
+          # - unique
+          # - not_null
 
       - name: shipmode
         test:
