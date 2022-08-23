@@ -1,12 +1,20 @@
 version: 2
 
 sources:
+  # SnowFlake credentials
   - name: global_mart
     database: raw
     schema: global_mart
     tables:
       - name: customer
+
       - name: orders
+        columns:
+          - name: orderid
+            tests:
+              - unique
+              - not_null
+              
       - name: product
         # Hypothetical data freshness check when streaming data
           # columns:
