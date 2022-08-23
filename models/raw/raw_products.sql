@@ -6,4 +6,5 @@
 }}
 
 SELECT * 
-FROM RAW.GLOBAL_MART.PRODUCT
+-- FROM RAW.GLOBAL_MART.PRODUCT
+FROM {{ source('global_mart', 'product') }}

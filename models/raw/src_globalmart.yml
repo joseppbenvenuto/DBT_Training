@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+  - name: global_mart
+    database: raw
+    schema: global_mart
+    tables:
+      - name: customer
+      - name: orders
+      - name: product
+        # Hypothetical data freshness check when streaming data
+          # columns:
+            # loaded_at_field: loadedat
+            # freshness:
+              # Warning after 12 hours
+              # warn_after: {count:12, period:hour}
+              # Error after 24 hours
+              # error_after: {count:24, period:hour}
