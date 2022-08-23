@@ -1,0 +1,10 @@
+version: 2
+
+# Test for unique null values in customer id
+models:
+  - name: raw_customers
+    columns:
+      - name: customerid
+        tests:
+          - unique
+          - not_null
