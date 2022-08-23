@@ -1,10 +1,28 @@
 version: 2
 
-# Test for unique null values in customer id
 models:
+  # Test for unique and null values in raw_customers customerid
   - name: raw_customers
     columns:
       - name: customerid
         tests:
           - unique
           - not_null
+
+  # Tests for unique and nul null values in raw_orders orderid
+  # Test for in raw_orders shipmode for only four unique values
+  - name: raw_orders
+    columns:
+      - name: orderid
+        - tests:
+          - unique
+          - not_null
+
+      - name: shipmode
+        test:
+          - accepted_values:
+              values:
+                - 'First Class'
+                - 'Same Day'
+                - 'Second Class'
+                - 'Standard Class'
