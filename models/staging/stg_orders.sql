@@ -22,9 +22,13 @@ SELECT
     prod.CATEGORY,
     prod.PRODUCTNAME,
     prod.SUBCATEGORY,
-    {{ markup('ORDERSELLINGPRICE','ORDERCOSTPRICE') }} AS MARKUP
+    {{ markup('ORDERSELLINGPRICE','ORDERCOSTPRICE') }} AS MARKUP,
+-- FROM delivery_team seed
+    del.delivery_team
 FROM {{ ref('raw_orders') }} as ord
 LEFT JOIN  {{ ref('raw_customers') }} AS cus
 ON ord.CUSTOMERID = cus.CUSTOMERID
 LEFT JOIN {{ ref('raw_products') }} AS prod
 ON ord.PRODUCTID = prod.PRODUCTID
+LEFT JOIN {{ ref('delivery_team') }} AS del
+ON ord.SHIPMODE = del.SHIPMODE
