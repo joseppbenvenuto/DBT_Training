@@ -3,14 +3,17 @@ version: 2
 sources:
   # SnowFlake credentials
   - name: global_mart
+    description: A clone of the SnowFlake DB
     database: raw
     schema: global_mart
     tables:
       - name: customer
 
       - name: orders
+        description: raw orders table
         columns:
           - name: orderid
+            description: primary key for orders
             tests:
               - unique
               - not_null
