@@ -20,9 +20,13 @@ SELECT
     prod.PRODUCTID,
     prod.CATEGORY,
     prod.PRODUCTNAME,
-    prod.SUBCATEGORY
+    prod.SUBCATEGORY,
+    {{ markup('ORDERSELLINGPRICE','ORDERCOSTPRICE') }} AS MARKUP
 FROM {{ ref('raw_orders') }} as ord
 LEFT JOIN  {{ ref('raw_customers') }} AS cus
 ON ord.CUSTOMERID = cus.CUSTOMERID
 LEFT JOIN {{ ref('raw_products') }} AS prod
 ON ord.PRODUCTID = prod.PRODUCTID
+
+-- Cant run because w ehave no fresh data
+-- WHERE {{ limit_data_dev('orderdate') }}
