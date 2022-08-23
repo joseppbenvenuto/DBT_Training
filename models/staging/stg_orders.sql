@@ -4,6 +4,7 @@
 -- Reference from the models table instead of SFDB
 SELECT
 -- From raw_orders
+{{ dbt_utils.surrogate_key(['ord.ORDERID','cus.CUSTOMERID','prod.PRODUCTID']) }} AS sk_orders,
     ord.ORDERID,
     ord.ORDERDATE,
     ord.SHIPDATE,
@@ -27,6 +28,3 @@ LEFT JOIN  {{ ref('raw_customers') }} AS cus
 ON ord.CUSTOMERID = cus.CUSTOMERID
 LEFT JOIN {{ ref('raw_products') }} AS prod
 ON ord.PRODUCTID = prod.PRODUCTID
-
--- Cant run because w ehave no fresh data
--- WHERE {{ limit_data_dev('orderdate') }}
