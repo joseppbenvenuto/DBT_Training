@@ -1,0 +1,29 @@
+version: 2
+
+sources:
+  # SnowFlake credentials
+  - name: global_mart
+    description: A clone of the SnowFlake DB
+    database: raw
+    schema: global_mart
+    tables:
+      - name: customer
+
+      - name: orders
+        description: raw orders table
+        columns:
+          - name: orderid
+            description: primary key for orders
+            tests:
+              - unique
+              - not_null
+              
+      - name: product
+        # Hypothetical data freshness check when streaming data
+          # columns:
+            # loaded_at_field: loadedat
+            # freshness:
+              # Warning after 12 hours
+              # warn_after: {count:12, period:hour}
+              # Error after 24 hours
+              # error_after: {count:24, period:hour}
